@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: #fafafa;
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.8;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    max-width: 400px;
+    height: auto;
+    display: inline-block;
+}
+
+.concept-section {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.concept-title {
+    color: #8b4513;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #d4a574;
+    padding-bottom: 0.5rem;
+}
+
+.concept-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 1.2rem 3rem;
+    border: 2px solid #8b4513;
+    border-radius: 4px;
+    background: white;
+    color: #8b4513;
+    font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    background: #8b4513;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+}
+
+@media (max-width: 768px) {
+    .logo {
+        max-width: 300px;
+    }
+
+    .concept-section {
+        padding: 1.5rem;
+    }
+
+    .concept-title {
+        font-size: 1.3rem;
+    }
+
+    .concept-text {
+        font-size: 1rem;
+    }
+
+    .nav-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+

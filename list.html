@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かるた一覧 - 長崎　坂るた</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/list.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-title">長崎　坂るた</a>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-box" id="searchBox" placeholder="坂の名前、頭文字、読み札で検索...">
+            </div>
+            <a href="map.html" class="nav-link">地図で見る</a>
+        </div>
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="container">
+        <div id="karutaGrid" class="karuta-grid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search" style="font-size: 3rem; color: #ddd; margin-bottom: 1rem;"></i>
+            <p>検索結果が見つかりませんでした</p>
+        </div>
+    </div>
+
+    <!-- モーダルウィンドウ -->
+    <div id="karutaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <div id="modalKashira" class="modal-kashira"></div>
+                    <div id="modalName" class="modal-karuta-name"></div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- コンテンツはJavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/list.js"></script>
+</body>
+</html>
+

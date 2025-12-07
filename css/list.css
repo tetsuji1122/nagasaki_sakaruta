@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: #fafafa;
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    background: #fff;
+    border-bottom: 2px solid #d4a574;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header-title {
+    color: #8b4513;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: #8b4513;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d4a574;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background: #8b4513;
+    color: white;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 1rem auto;
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 1px solid #d4a574;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    background: #fff;
+}
+
+.search-box:focus {
+    border-color: #8b4513;
+    box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.stats {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.karuta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.karuta-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.karuta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #d4a574;
+}
+
+.karuta-images {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.karuta-images img {
+    width: 48%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.karuta-info {
+    padding: 1.5rem;
+}
+
+.karuta-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.kashira {
+    background: #8b4513;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.karuta-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.yomi-text {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: #fafafa;
+    border-left: 3px solid #d4a574;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.yomi-hiragana {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
+.saka-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    color: #666;
+}
+
+/* モーダルウィンドウ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    padding: 2rem;
+    border-bottom: 2px solid #d4a574;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafafa;
+}
+
+.modal-header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-close {
+    color: #8b4513;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    color: #d4a574;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-images {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.modal-images img {
+    width: 48%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.modal-kashira {
+    background: #8b4513;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.modal-karuta-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-yomi-text {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #fafafa;
+    border-left: 4px solid #d4a574;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #555;
+}
+
+.modal-yomi-hiragana {
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+
+.modal-saka-info {
+    margin: 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    font-size: 1rem;
+    color: #666;
+}
+
+.modal-history {
+    margin: 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.modal-history-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #8b4513;
+    margin-bottom: 1rem;
+}
+
+.modal-history-text {
+    font-size: 1rem;
+    line-height: 2;
+    color: #555;
+    white-space: pre-wrap;
+}
+
+.modal-map-link {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #d4a574;
+    text-align: center;
+}
+
+.map-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #8b4513;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.map-link-btn:hover {
+    background: #d4a574;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
+}
+
+@media (max-width: 768px) {
+    .karuta-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-images {
+        flex-direction: column;
+    }
+
+    .modal-images img {
+        width: 100%;
+    }
+}
+

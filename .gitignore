@@ -1,0 +1,35 @@
+# OS関連
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ関連
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 一時ファイル
+*.tmp
+*.log
+*.bak
+
+# Node.js関連（使用する場合）
+node_modules/
+package-lock.json
+
+# Python関連（使用する場合）
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv
+
+# 環境変数
+.env
+.env.local
+
