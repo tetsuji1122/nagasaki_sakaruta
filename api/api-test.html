@@ -433,7 +433,7 @@
             showLoading('result-all');
             try {
                 const result = await API.karuta.getAll();
-                displayKarutaCards('result-all', result, `全かるた (${result.length}件)`);
+                displayResult('result-all', result, `全かるた (${result.length}件)`);
             } catch (error) {
                 document.getElementById('result-all').innerHTML = 
                     `<div class="status error">エラー: ${error.message}</div>`;
@@ -465,7 +465,7 @@
             try {
                 const result = await API.karuta.getById(id);
                 if (result) {
-                    displayKarutaCards('result-by-id', [result], `ID ${id} のかるた`);
+                    displayResult('result-by-id', result, `ID ${id} のかるた`);
                 } else {
                     document.getElementById('result-by-id').innerHTML = 
                         `<div class="status error">ID ${id} は見つかりません</div>`;
@@ -487,7 +487,7 @@
             showLoading('result-search');
             try {
                 const result = await API.search.search(query);
-                displayKarutaCards('result-search', result, `「${query}」の検索結果`);
+                displayResult('result-search', result, `「${query}」の検索結果`);
             } catch (error) {
                 document.getElementById('result-search').innerHTML = 
                     `<div class="status error">エラー: ${error.message}</div>`;
@@ -505,7 +505,7 @@
             showLoading('result-by-name');
             try {
                 const result = await API.search.searchByName(query);
-                displayKarutaCards('result-by-name', result, `坂の名前で「${query}」を検索`);
+                displayResult('result-by-name', result, `坂の名前で「${query}」を検索`);
             } catch (error) {
                 document.getElementById('result-by-name').innerHTML = 
                     `<div class="status error">エラー: ${error.message}</div>`;
@@ -523,7 +523,7 @@
             showLoading('result-by-yomi');
             try {
                 const result = await API.search.searchByYomi(query);
-                displayKarutaCards('result-by-yomi', result, `読み札で「${query}」を検索`);
+                displayResult('result-by-yomi', result, `読み札で「${query}」を検索`);
             } catch (error) {
                 document.getElementById('result-by-yomi').innerHTML = 
                     `<div class="status error">エラー: ${error.message}</div>`;
@@ -535,7 +535,7 @@
             showLoading('result-by-kashira');
             try {
                 const result = await API.search.searchByKashira(kashira);
-                displayKarutaCards('result-by-kashira', result, `「${kashira}」行のかるた`);
+                displayResult('result-by-kashira', result, `「${kashira}」行のかるた`);
             } catch (error) {
                 document.getElementById('result-by-kashira').innerHTML = 
                     `<div class="status error">エラー: ${error.message}</div>`;
