@@ -10,7 +10,9 @@ let karutaCache = null;
  */
 async function initCache() {
   if (!karutaCache) {
-    const response = await fetch('./data/karuta.json');
+    // fetch はページの URL を基準に解決されるため、モジュール位置からの相対パスを明示する
+    const dataUrl = new URL('../data/karuta.json', import.meta.url);
+    const response = await fetch(dataUrl);
     if (!response.ok) {
       throw new Error(`Failed to load karuta data: ${response.statusText}`);
     }
