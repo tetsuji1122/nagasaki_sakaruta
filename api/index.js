@@ -14,14 +14,14 @@ export const API = {
     getAll: getAllKaruta,
     getById: getKarutaById,
     getByIds: getKarutaByIds,
-    getTotalCount: getTotalCount,
-    getKashiraList: getKashiraList,
+    getTotalCount,
+    getKashiraList,
   },
   search: {
-    search: search,
-    searchByName: searchByName,
-    searchByYomi: searchByYomi,
-    searchByKashira: searchByKashira,
+    search,
+    searchByName,
+    searchByYomi,
+    searchByKashira,
   },
 };
 

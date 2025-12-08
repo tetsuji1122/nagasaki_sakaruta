@@ -19,7 +19,7 @@ export async function search(query) {
     k.furikana.toLowerCase().includes(q) ||
     k.yomi_kanji.toLowerCase().includes(q) ||
     k.yomi_hiragana.toLowerCase().includes(q) ||
-    k.kashira.includes(q)
+    k.kashira.toLowerCase().includes(q)
   );
 }
 
@@ -30,9 +30,10 @@ export async function search(query) {
  */
 export async function searchByName(query) {
   const data = await getAllKaruta();
+  const q = query.toLowerCase();
   return data.filter(k => 
-    k.name.includes(query) || 
-    k.furikana.includes(query)
+    k.name.toLowerCase().includes(q) || 
+    k.furikana.toLowerCase().includes(q)
   );
 }
 
@@ -43,9 +44,10 @@ export async function searchByName(query) {
  */
 export async function searchByYomi(query) {
   const data = await getAllKaruta();
+  const q = query.toLowerCase();
   return data.filter(k => 
-    k.yomi_kanji.includes(query) ||
-    k.yomi_hiragana.includes(query)
+    k.yomi_kanji.toLowerCase().includes(q) ||
+    k.yomi_hiragana.toLowerCase().includes(q)
   );
 }
 

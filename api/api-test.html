@@ -396,37 +396,7 @@
             document.getElementById(elementId).innerHTML = html;
         }
 
-        // かるたカード表示関数
-        function displayKarutaCards(elementId, karutaList, title = null) {
-            let html = '';
-            if (title) {
-                html += `<div class="result-title">${title}</div>`;
-            }
-            if (karutaList.length === 0) {
-                html += '<div class="status error">検索結果がありません</div>';
-            } else {
-                html += `<div class="status">検索結果: ${karutaList.length}件</div>`;
-                html += '<div class="karuta-grid">';
-                karutaList.forEach(k => {
-                    html += `
-                        <div class="karuta-card">
-                            <div class="karuta-card-header">
-                                <div class="karuta-card-id">ID: ${k.id}</div>
-                                <div class="karuta-card-name">${k.name}</div>
-                            </div>
-                            <div class="karuta-card-body">
-                                <div class="karuta-card-furikana">${k.furikana}</div>
-                                <div class="karuta-card-kashira">頭文字: ${k.kashira}</div>
-                                <div class="karuta-card-yomi">${k.yomi_kanji}</div>
-                                <div class="karuta-card-location">📍 北緯 ${k.lat.toFixed(6)}, 東経 ${k.lon.toFixed(6)}</div>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-            }
-            document.getElementById(elementId).innerHTML = html;
-        }
+
 
         // 1. すべてのかるたを取得
         window.testGetAll = async function() {
