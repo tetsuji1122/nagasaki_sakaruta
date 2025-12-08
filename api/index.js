@@ -1,0 +1,29 @@
+/**
+ * 長崎かるた API
+ * すべての API 機能の統一エントリーポイント
+ */
+
+import { getAllKaruta, getKarutaById, getKarutaByIds, getTotalCount, getKashiraList } from './karuta.js';
+import { search, searchByName, searchByYomi, searchByKashira, searchPaginated } from './search.js';
+
+/**
+ * API の公開インターフェース
+ */
+export const API = {
+  karuta: {
+    getAll: getAllKaruta,
+    getById: getKarutaById,
+    getByIds: getKarutaByIds,
+    getTotalCount: getTotalCount,
+    getKashiraList: getKashiraList,
+  },
+  search: {
+    search: search,
+    searchByName: searchByName,
+    searchByYomi: searchByYomi,
+    searchByKashira: searchByKashira,
+    searchPaginated: searchPaginated,
+  },
+};
+
+export default API;
