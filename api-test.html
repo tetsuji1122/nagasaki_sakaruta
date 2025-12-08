@@ -344,34 +344,26 @@
             <div id="result-by-name"></div>
         </div>
 
-        <!-- 5. 頭文字で検索 -->
+        <!-- 5. 読み札で検索 -->
         <div class="test-section">
-            <h2>5. 頭文字で検索</h2>
+            <h2>5. 読み札で検索</h2>
+            <p style="margin-bottom: 15px; color: #666;">API.search.searchByYomi(query) をテスト</p>
+            <div class="input-group">
+                <input type="text" id="yomiQuery" placeholder="読み札（例：天主堂）">
+                <button onclick="testSearchByYomi()">検索</button>
+            </div>
+            <div id="result-by-yomi"></div>
+        </div>
+
+        <!-- 6. 頭文字で検索 -->
+        <div class="test-section">
+            <h2>6. 頭文字で検索</h2>
             <p style="margin-bottom: 15px; color: #666;">API.search.searchByKashira(kashira) をテスト</p>
             <div class="kashira-buttons" id="kashiraButtons"></div>
             <div id="result-by-kashira"></div>
         </div>
 
-        <!-- 6. ページネーション検索 -->
-        <div class="test-section">
-            <h2>6. ページネーション検索</h2>
-            <p style="margin-bottom: 15px; color: #666;">API.search.searchPaginated(query, page, limit) をテスト</p>
-            <div class="input-group">
-                <input type="text" id="paginationQuery" placeholder="検索キーワード（空白ですべて表示）">
-                <input type="number" id="pageNumber" placeholder="ページ番号" min="1" value="1">
-                <input type="number" id="pageLimit" placeholder="件数/ページ" min="1" max="44" value="12">
-                <button onclick="testPagination()">検索</button>
-            </div>
-            <div id="result-pagination"></div>
-        </div>
 
-        <!-- 7. 頭文字一覧を取得 -->
-        <div class="test-section">
-            <h2>7. 頭文字一覧を取得</h2>
-            <p style="margin-bottom: 15px; color: #666;">API.karuta.getKashiraList() をテスト</p>
-            <button onclick="testGetKashiraList()">頭文字一覧を取得</button>
-            <div id="result-kashira-list"></div>
-        </div>
     </div>
 
     <script type="module">
@@ -512,7 +504,25 @@
             }
         };
 
-        // 5. 頭文字で検索
+        // 5. 読み札で検索
+        window.testSearchByYomi = async function() {
+            const query = document.getElementById('yomiQuery').value;
+            if (!query.trim()) {
+                document.getElementById('result-by-yomi').innerHTML = 
+                    '<div class="status error">読み札を入力してください</div>';
+                return;
+            }
+            showLoading('result-by-yomi');
+            try {
+                const result = await API.search.searchByYomi(query);
+                displayKarutaCards('result-by-yomi', result, `読み札で「${query}」を検索`);
+            } catch (error) {
+                document.getElementById('result-by-yomi').innerHTML = 
+                    `<div class="status error">エラー: ${error.message}</div>`;
+            }
+        };
+
+        // 6. 頭文字で検索
         window.testSearchByKashira = async function(kashira) {
             showLoading('result-by-kashira');
             try {
@@ -524,65 +534,7 @@
             }
         };
 
-        // 6. ページネーション検索
-        window.testPagination = async function() {
-            const query = document.getElementById('paginationQuery').value;
-            const page = parseInt(document.getElementById('pageNumber').value);
-            const limit = parseInt(document.getElementById('pageLimit').value);
-
-            if (isNaN(page) || page < 1) {
-                document.getElementById('result-pagination').innerHTML = 
-                    '<div class="status error">正しいページ番号を入力してください</div>';
-                return;
-            }
-
-            showLoading('result-pagination');
-            try {
-                const result = await API.search.searchPaginated(query, page, limit);
-                let html = `<div class="result-title">ページネーション結果</div>`;
-                html += `<div class="status">全件数: ${result.total}件 | ページ: ${result.page}/${result.totalPages} | 1ページ: ${result.limit}件</div>`;
-                
-                if (result.data.length === 0) {
-                    html += '<div class="status error">検索結果がありません</div>';
-                } else {
-                    html += '<div class="karuta-grid">';
-                    result.data.forEach(k => {
-                        html += `
-                            <div class="karuta-card">
-                                <div class="karuta-card-header">
-                                    <div class="karuta-card-id">ID: ${k.id}</div>
-                                    <div class="karuta-card-name">${k.name}</div>
-                                </div>
-                                <div class="karuta-card-body">
-                                    <div class="karuta-card-furikana">${k.furikana}</div>
-                                    <div class="karuta-card-kashira">頭文字: ${k.kashira}</div>
-                                    <div class="karuta-card-yomi">${k.yomi_kanji}</div>
-                                    <div class="karuta-card-location">📍 北緯 ${k.lat.toFixed(6)}, 東経 ${k.lon.toFixed(6)}</div>
-                                </div>
-                            </div>
-                        `;
-                    });
-                    html += '</div>';
-                }
-
-                const pagination = `<div class="pagination"><div class="pagination-info">`;
-                if (result.hasPrev) {
-                    pagination += `<button onclick="document.getElementById('pageNumber').value = ${page - 1}; testPagination();">← 前へ</button>`;
-                }
-                pagination += `<span style="margin: 0 10px;">${result.page} / ${result.totalPages}</span>`;
-                if (result.hasNext) {
-                    pagination += `<button onclick="document.getElementById('pageNumber').value = ${page + 1}; testPagination();">次へ →</button>`;
-                }
-                pagination += `</div></div>`;
-
-                document.getElementById('result-pagination').innerHTML = html + pagination;
-            } catch (error) {
-                document.getElementById('result-pagination').innerHTML = 
-                    `<div class="status error">エラー: ${error.message}</div>`;
-            }
-        };
-
-        // 7. 頭文字一覧を取得
+        // 6. 頭文字一覧を取得
         window.testGetKashiraList = async function() {
             showLoading('result-kashira-list');
             try {

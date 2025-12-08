@@ -103,24 +103,6 @@ const karutaA = await API.search.searchByKashira('あ');
 // 戻り値: 「あ」行のかるたの配列
 ```
 
-#### `API.search.searchPaginated(query, page, limit)`
-
-ページネーション付き検索。
-
-```javascript
-const result = await API.search.searchPaginated('', 1, 12);
-// 戻り値:
-// {
-//   data: [...12個のかるた],
-//   total: 44,
-//   page: 1,
-//   limit: 12,
-//   totalPages: 4,
-//   hasNext: true,
-//   hasPrev: false
-// }
-```
-
 ---
 
 ## データ構造
@@ -191,39 +173,7 @@ for (const kashira of kashiraList) {
 }
 ```
 
-### 例3: ページネーション
-
-```javascript
-import API from './api/index.js';
-
-let currentPage = 1;
-
-async function loadPage(page) {
-  const result = await API.search.searchPaginated('', page, 12);
-  
-  displayKaruta(result.data);
-  document.getElementById('pageInfo').textContent = 
-    `${result.page} / ${result.totalPages}`;
-  
-  document.getElementById('prevBtn').disabled = !result.hasPrev;
-  document.getElementById('nextBtn').disabled = !result.hasNext;
-}
-
-document.getElementById('nextBtn').addEventListener('click', () => {
-  currentPage++;
-  loadPage(currentPage);
-});
-
-document.getElementById('prevBtn').addEventListener('click', () => {
-  currentPage--;
-  loadPage(currentPage);
-});
-
-// 最初のページを読み込み
-loadPage(1);
-```
-
-### 例4: 地図表示への統合
+### 例3: 地図表示への統合
 
 ```javascript
 import API from './api/index.js';

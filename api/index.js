@@ -4,7 +4,7 @@
  */
 
 import { getAllKaruta, getKarutaById, getKarutaByIds, getTotalCount, getKashiraList } from './karuta.js';
-import { search, searchByName, searchByYomi, searchByKashira, searchPaginated } from './search.js';
+import { search, searchByName, searchByYomi, searchByKashira } from './search.js';
 
 /**
  * API の公開インターフェース
@@ -22,7 +22,6 @@ export const API = {
     searchByName: searchByName,
     searchByYomi: searchByYomi,
     searchByKashira: searchByKashira,
-    searchPaginated: searchPaginated,
   },
 };
 

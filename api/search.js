@@ -59,32 +59,4 @@ export async function searchByKashira(kashira) {
   return data.filter(k => k.kashira === kashira);
 }
 
-/**
- * ページネーション付き検索
- * @param {string} query - 検索クエリ（空文字列の場合はすべて取得）
- * @param {number} page - ページ番号（1始まり）
- * @param {number} limit - 1ページあたりの件数
- * @returns {Promise<Object>} ページネーション情報付きの結果
- */
-export async function searchPaginated(query = '', page = 1, limit = 12) {
-  let results;
-  
-  if (query === '') {
-    results = await getAllKaruta();
-  } else {
-    results = await search(query);
-  }
-  
-  const start = (page - 1) * limit;
-  const end = start + limit;
-  
-  return {
-    data: results.slice(start, end),
-    total: results.length,
-    page: page,
-    limit: limit,
-    totalPages: Math.ceil(results.length / limit),
-    hasNext: end < results.length,
-    hasPrev: page > 1,
-  };
-}
+
