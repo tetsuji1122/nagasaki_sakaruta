@@ -363,6 +363,14 @@
             <div id="result-by-kashira"></div>
         </div>
 
+        <!-- 7. 頭文字一覧を取得 -->
+        <div class="test-section">
+            <h2>7. 頭文字一覧を取得</h2>
+            <p style="margin-bottom: 15px; color: #666;">API.karuta.getKashiraList() をテスト</p>
+            <button onclick="testGetKashiraList()">頭文字一覧を取得</button>
+            <div id="result-kashira-list"></div>
+        </div>
+
 
     </div>
 
@@ -534,7 +542,7 @@
             }
         };
 
-        // 6. 頭文字一覧を取得
+        // 7. 頭文字一覧を取得
         window.testGetKashiraList = async function() {
             showLoading('result-kashira-list');
             try {
