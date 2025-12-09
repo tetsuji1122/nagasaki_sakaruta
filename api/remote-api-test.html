@@ -21,8 +21,8 @@
   <pre id="out">Waiting...</pre>
 
   <script type="module">
-    // 公開されている JS を直接 import
-    import { getAllKaruta, getKarutaById } from 'https://tetsuji1122.github.io/nagasaki_sakaruta/api/karuta.js';
+    // 公開されている API を import
+    import API from 'https://tetsuji1122.github.io/nagasaki_sakaruta/api/index.js';
 
     const out = document.getElementById('out');
     const btnAll = document.getElementById('btnAll');
@@ -41,7 +41,7 @@
     btnAll.onclick = async () => {
       out.textContent = 'Loading...';
       try {
-        const data = await getAllKaruta();
+        const data = await API.karuta.getAll();
         show(data);
       } catch (e) {
         showError(e);
@@ -51,7 +51,7 @@
     btnId.onclick = async () => {
       out.textContent = 'Loading...';
       try {
-        const data = await getKarutaById(1);
+        const data = await API.karuta.getById(1);
         show(data);
       } catch (e) {
         showError(e);
