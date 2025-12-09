@@ -13,6 +13,25 @@ HTML ファイルで以下のように import して使用します：
 import API from './api/index.js';
 ```
 
+### 外部サーバーから読み込む場合
+
+公開しているビルド済み JS を直接読み込めます。
+
+```html
+<script type="module">
+  import API from 'https://tetsuji1122.github.io/nagasaki_sakaruta/api/index.js';
+
+  (async () => {
+    const all = await API.karuta.getAll();
+    console.log(all);
+  })();
+</script>
+```
+
+- `type="module"` を指定してください（ES Modules 用）
+- データはモジュールと同じホスト上の `data/karuta.json` を参照します
+- CORS を許可しているため、ローカル HTML や別ドメインからも利用できます
+
 ## API リファレンス
 
 ### かるたデータ取得
@@ -198,7 +217,6 @@ async function addMarkersToMap(map) {
 
 ### データが取得できない場合
 
-- `./data/karuta.json` ファイルが正しいパスに存在するか確認してください
 - ブラウザのコンソール（F12）でエラーメッセージを確認してください
 
 ### 検索結果がない場合

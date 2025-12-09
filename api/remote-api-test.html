@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リモートAPIテスト</title>
+  <style>
+    body { font-family: sans-serif; padding: 16px; }
+    pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow: auto; }
+    button { padding: 8px 12px; margin-right: 8px; }
+    .error { color: #b00020; }
+  </style>
+</head>
+<body>
+  <h1>リモートAPIテスト</h1>
+  <p>公開中の JS を import して、かるたデータを取得します。</p>
+  <div style="margin-bottom:12px;">
+    <button id="btnAll">全件取得</button>
+    <button id="btnId">ID=1 を取得</button>
+  </div>
+  <pre id="out">Waiting...</pre>
+
+  <script type="module">
+    // 公開されている JS を直接 import
+    import { getAllKaruta, getKarutaById } from 'https://tetsuji1122.github.io/nagasaki_sakaruta/api/karuta.js';
+
+    const out = document.getElementById('out');
+    const btnAll = document.getElementById('btnAll');
+    const btnId = document.getElementById('btnId');
+
+    const show = (data) => {
+      out.textContent = JSON.stringify(data, null, 2);
+      out.classList.remove('error');
+    };
+
+    const showError = (err) => {
+      out.textContent = `Error: ${err}`;
+      out.classList.add('error');
+    };
+
+    btnAll.onclick = async () => {
+      out.textContent = 'Loading...';
+      try {
+        const data = await getAllKaruta();
+        show(data);
+      } catch (e) {
+        showError(e);
+      }
+    };
+
+    btnId.onclick = async () => {
+      out.textContent = 'Loading...';
+      try {
+        const data = await getKarutaById(1);
+        show(data);
+      } catch (e) {
+        showError(e);
+      }
+    };
+
+    // 初期表示
+    btnAll.click();
+  </script>
+</body>
+</html>
