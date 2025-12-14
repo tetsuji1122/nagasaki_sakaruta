@@ -249,10 +249,10 @@ async function addMarkersToMap(map) {
 以下のいずれかの形式で、媒体に応じて見やすい場所に表示してください。
 
 - 日本語例: 
-  長崎坂るたデータ（CC BY 4.0）提供: 長崎：坂の記憶をたどるプロジェクト（https://tetsuji1122.github.io/nagasaki_sakaruta/）
+  長崎坂るたデータ（CC BY 4.0）提供: 長崎坂るたプロジェクト（https://tetsuji1122.github.io/nagasaki_sakaruta/）
 
 - 英語例:
-  Nagasaki Sakaruta data (CC BY 4.0) by "Tracing the Memories of Nagasaki Hills" Project (https://tetsuji1122.github.io/nagasaki_sakaruta/)
+  Nagasaki Sakaruta data (CC BY 4.0) by Nagasaki Sakaruta Project (https://tetsuji1122.github.io/nagasaki_sakaruta/)
 
 CC BY 4.0 の詳細: https://creativecommons.org/licenses/by/4.0/deed.ja
 
