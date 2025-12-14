@@ -238,3 +238,21 @@ async function addMarkersToMap(map) {
 - **キャッシュ**: 初回読み込み後、メモリにキャッシュされます
 - **ブラウザ互換性**: ES6 Module をサポートするブラウザが必要です
 
+---
+
+## ライセンス
+
+このデータのライセンスは、クリエイティブ・コモンズ・ライセンス 表示 4.0 国際 (CC BY 4.0) です。 以下のクレジットを表示することで、商用・非商用を問わず、自由に複製、頒布、改変して利用できます。
+
+### 必須クレジット表示（例）
+
+以下のいずれかの形式で、媒体に応じて見やすい場所に表示してください。
+
+- 日本語例: 
+  長崎坂るたデータ（CC BY 4.0）提供: 長崎：坂の記憶をたどるプロジェクト（https://tetsuji1122.github.io/nagasaki_sakaruta/）
+
+- 英語例:
+  Nagasaki Sakaruta data (CC BY 4.0) by "Tracing the Memories of Nagasaki Hills" Project (https://tetsuji1122.github.io/nagasaki_sakaruta/)
+
+CC BY 4.0 の詳細: https://creativecommons.org/licenses/by/4.0/deed.ja
+
